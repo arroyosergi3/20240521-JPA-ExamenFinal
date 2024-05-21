@@ -3,6 +3,10 @@ package principal;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
+import principal.view.res.PanelClasificacion;
+import principal.view.res.PanelGestionSocios;
+import principal.view.res.PanelSociosDeEquipo;
+
 
 public class Principal extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -17,16 +21,17 @@ public class Principal extends JFrame {
 	}
   
 	public Principal() {
-		super("Gestion de Ficheros");
+		super("Gestion Voleibol");
 		this.setBounds(0, 0, 800, 600);
 		panelTabbed = new JTabbedPane();
 
-		PanelCopiaFicheros pcf = new PanelCopiaFicheros();
-		PanelTablaYFicheros ptyf = new PanelTablaYFicheros();
-		PanelTablaConSlider ptcs = new PanelTablaConSlider();
-		panelTabbed.addTab("Copiado de Carpetas", pcf);
-		panelTabbed.addTab("Busqueda de Ficheros", ptyf);
-		panelTabbed.addTab("Selección ficheros por tamaño", ptcs);
+		PanelGestionSocios pgs = new PanelGestionSocios();
+		PanelSociosDeEquipo psde = new PanelSociosDeEquipo();
+		PanelClasificacion pc = new PanelClasificacion();
+		
+		panelTabbed.addTab("Gestión de Socios", pgs);
+		panelTabbed.addTab("Socios de Equipo", psde);
+		panelTabbed.addTab("Clasificación ", pc);
 		
 		panelTabbed.setSelectedIndex(0);
 		this.getContentPane().add(panelTabbed);

@@ -7,7 +7,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import bankonterSupervitaminado.model.Entidad;
+import principal.model.Entidad;
+import principal.model.Equipo;
 
 
 public class SuperControladorJPA {
@@ -32,7 +33,7 @@ public class SuperControladorJPA {
 	 */
 	protected EntityManager getEntityManager () {
 		if (em == null) {
-			em = Persistence.createEntityManagerFactory("bankonterSupervitaminado")
+			em = Persistence.createEntityManagerFactory("20240521-JPA-ExamenFinal")
 				.createEntityManager();
 		}
 		return em;
@@ -65,6 +66,20 @@ public class SuperControladorJPA {
 		return (List<Entidad>) 
 		getEntityManager()
 		.createNativeQuery("SELECT * FROM " + this.nombreTabla, this.tipoEntidad)
+		.getResultList();
+	}
+	
+	public List<? extends Entidad> findAllDeEquipo (Equipo e) {
+		return (List<? extends Entidad>) 
+		getEntityManager()
+		.createNativeQuery("SELECT * FROM " + this.nombreTabla + " where idEquipo = " +  e.getId(), this.tipoEntidad)
+		.getResultList();
+	}
+	
+	public List<? extends Entidad> findOrdenados (String campo, Equipo e) {
+		return (List<Entidad>) 
+		getEntityManager()
+		.createNativeQuery("SELECT * FROM " + this.nombreTabla + " where idEquipo = " + e.getId() + " order by " + campo, this.tipoEntidad)
 		.getResultList();
 	}
 	
